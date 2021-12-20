@@ -5,7 +5,7 @@ let handlers = {};
 function addHandlers(dir, file){
   let item = require(path.join(dir, file));
   handlers[item.group] = handlers[item.group] || {};
-  handlers[item.name] = item.handle;
+  handlers[item.group][item.name] = item.handle;
 }
 
 // Import module models
