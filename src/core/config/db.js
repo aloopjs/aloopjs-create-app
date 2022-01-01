@@ -6,21 +6,15 @@ module.exports = {
       pending: 'pending',
       locked: 'locked',
       deleted: 'deleted',
-      applied: 'applied'
+      applied: 'applied',
+      confirming: 'confirming',
+      completed: 'completed'
     },
 
     scoped: {
       public: 'public',
       private: 'private',
       course: 'course'
-    }
-  },
-
-  user: {
-    type: {
-      personal: 'personal',
-      admin: 'admin',
-      service: 'service'
     }
   }
 };

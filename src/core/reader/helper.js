@@ -1,17 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 let handlers = {};
+const modules = require('../../../modules');
 
 function addHandlers(dir, file){
   let item = require(path.join(dir, file));
-  handlers[item.name] = item.handle;
+  let name = item.name || path.parse(file).name;
+  handlers[item.group] = handlers[item.group] || {};
+  handlers[item.group][name] = item.handle;
 }
 
 // Import module models
 let parent = path.dirname(path.dirname(__dirname));
 
-global.App.config.modules.forEach((el) => {
-  let root = [parent, 'src', el , 'middleware'].join(path.sep);
+modules.forEach((el) => {
+  let root = [parent, 'src', el , 'helpers'].join(path.sep);
 
   if (fs.existsSync(root)) {
     fs

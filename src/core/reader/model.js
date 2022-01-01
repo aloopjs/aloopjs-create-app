@@ -4,32 +4,33 @@ const path = require('path');
 const { model, Schema } = require('mongoose');
 let models = {};
 let configModels = {};
+const modules = require('../../../modules');
 
 function addModels(dir, file){
   let model = require(path.join(dir, file));
-
-  configModels[model.name] = configModels[model.name] || {attrs: {}, options: {}, inits: []};
+  let name = model.name || path.parse(file).name;
+  configModels[name] = configModels[name] || {attrs: {}, options: {}, inits: []};
 
   if (model.attrs) {
-    configModels[model.name].attrs = {
-      ...configModels[model.name].attrs,
+    configModels[name].attrs = {
+      ...configModels[name].attrs,
       ...model.attrs
     };
   }
 
   if (model.options) {
-    configModels[model.name].options = {
-      ...configModels[model.name].options,
+    configModels[name].options = {
+      ...configModels[name].options,
       ...model.options
     }
   }
 
   if (model.copy) {
-    configModels[model.name].copy = model.copy;
+    configModels[name].copy = model.copy;
   }
 
   if (model.init) {
-    configModels[model.name].inits.push(model.init);
+    configModels[name].inits.push(model.init);
   }
 }
 
@@ -46,7 +47,7 @@ function addModels(dir, file){
 // Import module models
 let parent = path.dirname(path.dirname(__dirname));
 
-global.App.config.modules.forEach((el) => {
+modules.forEach((el) => {
   let root = [parent, 'src', el , 'models'].join(path.sep);
 
   if (fs.existsSync(root)) {

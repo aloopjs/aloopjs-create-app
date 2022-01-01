@@ -1,23 +1,9 @@
 const express = require('express');
-const i18n = require('i18n');
-const ServiceProvider = require('./boot/ServiceProvider');
+const framework = require('./boot/framework');
 require('dotenv').config();
-
-i18n.configure({
-  // setup some locales - other locales default to en silently
-  locales: ['vi'],
-  defaultLocale: 'vi',
-  // where to store json files - defaults to './locales'
-  directory: __dirname + '/locales',
-
-  register: global
-});
-
-//i18n.setLocale('vi');
 
 const app = express();
 app.use(express.json());
-app.use(i18n.init);
 app.use(express.static('public'));
 
 app.use(function (req, res, next) {
@@ -27,8 +13,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+framework.run(app);
+
 const server = app.listen(process.env.PORT, function () {
   console.log('runing ...');
 });
-
-ServiceProvider.boot(app);
