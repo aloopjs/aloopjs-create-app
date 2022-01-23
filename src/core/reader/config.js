@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 let handlers = {};
-const modules = require('../../../modules');
+const {modules} = require('../../../rexi.config');
 
 function addHandlers(dir, file){
   let configData = require(path.join(dir, file));

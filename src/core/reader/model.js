@@ -4,7 +4,7 @@ const path = require('path');
 const { model, Schema } = require('mongoose');
 let models = {};
 let configModels = {};
-const modules = require('../../../modules');
+const {modules} = require('../../../rexi.config');
 
 function addModels(dir, file){
   let model = require(path.join(dir, file));

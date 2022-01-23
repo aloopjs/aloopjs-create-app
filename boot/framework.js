@@ -1,4 +1,4 @@
-const modules = require('../modules');
+const {modules} = require('../rexi.config');
 
 module.exports = {
   run(app) {
