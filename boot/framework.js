@@ -1,9 +1,15 @@
 const {modules} = require('../rexi.config');
 
 module.exports = {
-  run(app) {
+  async run(app) {
+    // Before hook
     modules.forEach((el) => {
-      require('../src/'+el+'/index')(app);
+      require('../src/'+el+'/index').register(app);
+    });
+
+    // Boot hook
+    modules.forEach((el) => {
+      require('../src/'+el+'/index').boot(app);
     });
   }
 };
