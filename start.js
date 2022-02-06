@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-framework.run(app);
+framework.run({app, name: 'express'});
 
 const server = app.listen(process.env.PORT, function () {
   console.log('runing ...');
