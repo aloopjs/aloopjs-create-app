@@ -1,8 +1,8 @@
 module.exports = {
   rq(str){
-    // Check if have @
-    if (str.charAt(0) === '@') {
-      return require(str.replace(/^@/, '../src/' ) + '/index');
+    // Check if have #
+    if (str.charAt(0) === '#') {
+      return require(str.replace(/^#/, '../src/' ) + '/index');
     }
 
     return require(str);
