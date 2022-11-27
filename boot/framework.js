@@ -1,17 +1,24 @@
-const {modules} = require('../rexi.config');
-
 module.exports = {
-  async run(app) {
+  rq(str){
+    // Check if have @
+    if (str.charAt(0) === '@') {
+      return require(str.replace(/^@/, '../src/' ) + '/index');
+    }
+
+    return require(str);
+  },
+
+  async run(app, config) {
     // Before hook
-    modules.forEach((el) => {
-      const module = require('../src/'+el+'/index');
-      module.register && module.register(app);
+    config.modules.forEach((el) => {
+      const module = this.rq(el);
+      module.register && module.register(app, config);
     });
 
     // Boot hook
-    modules.forEach((el) => {
-      const module = require('../src/'+el+'/index');
-      module.boot && module.boot(app);
+    config.modules.forEach((el) => {
+      const module = this.rq(el);
+      module.boot && module.boot(app, config);
     });
   }
 };
