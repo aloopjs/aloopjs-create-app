@@ -1,5 +1,5 @@
 const express = require('express');
-const framework = require('./boot/framework');
+const rexijs = require('rexijs');
 require('dotenv').config();
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-framework.run({app, name: 'express'});
+rexijs.run({app, name: 'express'});
 
 const server = app.listen(process.env.PORT, function () {
   console.log('runing ...');

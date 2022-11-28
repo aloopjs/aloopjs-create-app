@@ -1,3 +1,3 @@
 module.exports = {
-  modules: ['core']
+  modules: [] // Add module to use in here
 };
