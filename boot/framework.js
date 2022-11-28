@@ -1,8 +1,11 @@
+const path = require('path');
+const basename = path.dirname(require.main.filename);
+
 module.exports = {
   rq(str){
     // Check if have #
     if (str.charAt(0) === '#') {
-      return require(str.replace(/^#/, '../src/' ) + '/index');
+      return require([basename, 'src', el.replace(/^#/, '') , 'index'].join(path.sep));
     }
 
     return require(str);
