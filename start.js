@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-rexijs.run({app, router: require('express').Router(), name: 'express'}, require('./config.rexi'));
+rexijs.run({app, name: 'demo', type: 'express'}, require('./config.rexi'));
 
 const server = app.listen(process.env.PORT, function () {
   console.log('runing ...');
