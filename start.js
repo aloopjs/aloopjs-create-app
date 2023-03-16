@@ -1,5 +1,5 @@
 const express = require('express');
-const rexijs = require('rexijs');
+const aloopjs = require('aloopjs');
 require('dotenv').config();
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-rexijs.run({app, name: 'demo', type: 'express'}, require('./config.rexi'));
+aloopjs.run({app, name: 'demo', type: 'express'}, require('./config.aloopjs'));
 
 const server = app.listen(process.env.PORT, function () {
   console.log('runing ...');
