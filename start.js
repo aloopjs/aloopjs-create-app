@@ -1,5 +1,5 @@
 const express = require('express');
-const aloopjs = require('aloopjs');
+const aloopjs = require('@aloopjs/run');
 require('dotenv').config();
 
 const app = express();
